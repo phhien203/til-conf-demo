@@ -6,8 +6,13 @@ export const routes: Routes = [
     loadChildren: () => import('./books/books.routes').then((m) => m.routes),
   },
   {
+    path: 'courses',
+    loadChildren: () =>
+      import('./courses/courses.routes').then((m) => m.routes),
+  },
+  {
     path: '**',
-    redirectTo: 'books',
+    redirectTo: 'courses',
     pathMatch: 'full',
   },
 ];

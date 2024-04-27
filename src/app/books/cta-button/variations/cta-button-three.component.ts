@@ -4,6 +4,7 @@ import { BookDetails } from '../../book-details.model';
 @Component({
   standalone: true,
   imports: [],
+  selector: 'app-cta-button-three',
   template: ` <button>Enroll {{ bookDetails().title }}</button>`,
 })
 export class CtaButtonThreeComponent {

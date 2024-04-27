@@ -1,5 +1,5 @@
-import { CtaButtonStrategyOne } from './strategies/strategy-one';
-import { CtaButtonStrategyTwo } from './strategies/strategy-two';
+import { CtaButtonStrategyOne } from './strategy-one';
+import { CtaButtonStrategyTwo } from './strategy-two';
 
 const strategyOne = new CtaButtonStrategyOne();
 const strategyTwo = new CtaButtonStrategyTwo();

@@ -1,29 +1,33 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { CtaButtonComponent } from './cta-button/cta-button.component';
 import { BookDetails } from './book-details.model';
 
-const books: Record<string, BookDetails> = {
-  one: {
+const books: BookDetails[] = [
+  {
+    id: '1',
     title: 'Vue',
     description: 'The modern web developers platform',
     category: 'technical',
   },
-  two: {
+  {
+    id: '2',
     title: 'Svelte',
     description: 'A JavaScript library for building user interfaces',
     category: 'technical',
   },
-  three: {
+  {
+    id: '3',
     title: 'Angular',
     description: 'A novel by Brazilian author Paulo Coelho',
     category: 'nonTechnical',
   },
-  four: {
+  {
+    id: '4',
     title: 'React',
     description: 'The Progressive JavaScript Framework',
     category: 'nonTechnical',
   },
-};
+];
 
 @Component({
   standalone: true,
@@ -36,5 +40,15 @@ const books: Record<string, BookDetails> = {
   `,
 })
 export class BookPreviewComponent {
-  bookDetails = input.required<BookDetails>();
+  bookId = input.required<string>();
+  bookDetails = computed(() => {
+    return (
+      books.find((book) => book.id === this.bookId()) || {
+        id: '',
+        title: '',
+        description: '',
+        category: 'technical' as const,
+      }
+    );
+  });
 }

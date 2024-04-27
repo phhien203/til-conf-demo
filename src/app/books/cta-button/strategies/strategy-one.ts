@@ -13,9 +13,7 @@ const componentFour = () =>
   );
 
 export class CtaButtonStrategyOne implements CtaButtonStrategy {
-  async getComponent(
-    bookDetails: BookDetails
-  ): Promise<Type<any> | null> {
+  getComponent(bookDetails: BookDetails): Promise<Type<any> | null> {
     if (bookDetails.title === 'Vue') {
       return componentThree();
     }

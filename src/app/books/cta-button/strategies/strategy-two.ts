@@ -12,9 +12,7 @@ const componentTwo = () =>
   );
 
 export class CtaButtonStrategyTwo implements CtaButtonStrategy {
-  getComponent(
-    bookDetails: BookDetails
-  ): Promise<Type<any> | null | undefined> {
+  getComponent(bookDetails: BookDetails): Promise<Type<any> | null> {
     if (bookDetails.title === 'Angular') {
       return componentOne();
     }
