@@ -1,12 +1,15 @@
 import { Component, input } from '@angular/core';
 import { Course } from '../../model/course.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   selector: 'app-buy-for-price',
   template: `
-    <button (click)="goToPayment()">Buy for {{ courseDetails().price }}</button>
+    <button (click)="goToPayment()">
+      Buy for {{ courseDetails().price | currency }}
+    </button>
   `,
 })
 export class BuyForPriceComponent {

@@ -1,0 +1,17 @@
+@if(courseDetails(); as course) {
+  @if(course.type === CourseType.Online) {
+    @if(course.price === 0) {
+      <button (click)="goToStartLearning()">Start Learning</button>
+    } @else if(course.price > 0) {
+      <button (click)="goToPayment()">Buy for {{ course.price }}</button>
+    }
+  } @else if(course.type === CourseType.Workshop) {
+      @if(course.price === 0) {
+        <button (click)="goToEnroll()">Enroll Now</button>
+      } @else if(course.price > 0) {
+        <button (click)="goToRegisterForm()">Register for {{ course.price }}</button>
+      }
+  }
+} @else {
+  <p>No Course Found</p>
+}

@@ -2,6 +2,8 @@ import { Type } from '@angular/core';
 import { CtaButtonStrategy } from './CtaButton.strategy';
 import { Course } from '../../model/course.model';
 
+type LazyLoadComponent = () => Promise<Type<any>>;
+
 const startLearningComponent = () =>
   import('../variations/start-learning.component').then(
     ({ StartLearningComponent }) => StartLearningComponent
@@ -11,14 +13,19 @@ const buyForPriceComponent = () =>
     ({ BuyForPriceComponent }) => BuyForPriceComponent
   );
 
+const componentMap: Record<string, LazyLoadComponent> = {
+  free: startLearningComponent,
+  paid: buyForPriceComponent,
+};
+
 export class CtaButtonOnlineStrategy implements CtaButtonStrategy {
   async getComponent(courseDetails: Course): Promise<Type<any> | null> {
-    if (courseDetails.price === 0) {
-      return startLearningComponent();
-    }
+    const key = courseDetails.price === 0 ? 'free' : 'paid';
 
-    if (courseDetails.price > 0) {
-      return buyForPriceComponent();
+    const lazyLoadComponent = componentMap[key];
+
+    if (lazyLoadComponent) {
+      return lazyLoadComponent();
     }
 
     return null;
