@@ -1,18 +1,19 @@
-import { NgComponentOutlet } from '@angular/common';
+import { AsyncPipe, NgComponentOutlet } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
-import { derivedAsync } from 'ngxtension/derived-async';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
 
 import { Course } from '../model/course.model';
 import { CtaButtonService } from './cta-button.service';
 
 @Component({
   standalone: true,
-  imports: [NgComponentOutlet],
+  imports: [NgComponentOutlet, AsyncPipe],
   selector: 'app-cta-button',
   template: `
     <ng-container
       *ngComponentOutlet="
-        ctaButtonComponent();
+        ctaButtonComponent$ | async;
         inputs: {
           courseDetails: courseDetails()
         }
@@ -24,8 +25,8 @@ export class CtaButtonComponent {
   #service = inject(CtaButtonService);
 
   courseDetails = input.required<Course>();
-  ctaButtonComponent = derivedAsync(
-    () => this.#service.getComponent(this.courseDetails()),
-    { initialValue: null }
+
+  ctaButtonComponent$ = toObservable(this.courseDetails).pipe(
+    switchMap((courseDetails) => this.#service.getComponent(courseDetails))
   );
 }
