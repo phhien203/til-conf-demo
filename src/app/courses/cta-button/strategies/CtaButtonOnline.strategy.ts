@@ -4,11 +4,11 @@ import { Course } from '../../model/course.model';
 
 type LazyLoadComponent = () => Promise<Type<any>>;
 
-const startLearningComponent = () =>
+const startLearningComponent: LazyLoadComponent = () =>
   import('../variations/start-learning.component').then(
     ({ StartLearningComponent }) => StartLearningComponent
   );
-const buyForPriceComponent = () =>
+const buyForPriceComponent: LazyLoadComponent = () =>
   import('../variations/buy-for-price.component').then(
     ({ BuyForPriceComponent }) => BuyForPriceComponent
   );

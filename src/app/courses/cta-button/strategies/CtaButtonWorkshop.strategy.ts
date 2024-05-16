@@ -4,12 +4,12 @@ import { CtaButtonStrategy } from './CtaButton.strategy';
 
 type LazyLoadComponent = () => Promise<Type<any>>;
 
-const enrollNowComponent = () =>
+const enrollNowComponent: LazyLoadComponent = () =>
   import('../variations/enroll-now.component').then(
     ({ EnrollNowComponent }) => EnrollNowComponent
   );
 
-const registerComponent = () =>
+const registerComponent: LazyLoadComponent = () =>
   import('../variations/register.component').then(
     ({ RegisterComponent }) => RegisterComponent
   );

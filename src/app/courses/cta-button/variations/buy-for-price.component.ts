@@ -17,5 +17,8 @@ export class BuyForPriceComponent {
 
   goToPayment() {
     console.log(`Navigating to payment page for ${this.courseDetails().title}`);
+    window.alert(
+      `Navigating to payment page for ${this.courseDetails().title}`
+    );
   }
 }

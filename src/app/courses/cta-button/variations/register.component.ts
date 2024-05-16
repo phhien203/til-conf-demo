@@ -14,5 +14,8 @@ export class RegisterComponent {
     console.log(
       `Navigating to register form for ${this.courseDetails().title}`
     );
+    window.alert(
+      `Navigating to register form for ${this.courseDetails().title}`
+    );
   }
 }

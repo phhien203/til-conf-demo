@@ -12,5 +12,6 @@ export class EnrollNowComponent {
 
   goToEnroll() {
     console.log(`Navigating to enroll page for ${this.courseDetails().title}`);
+    window.alert(`Navigating to enroll page for ${this.courseDetails().title}`);
   }
 }

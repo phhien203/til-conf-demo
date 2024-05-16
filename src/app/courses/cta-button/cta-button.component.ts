@@ -13,7 +13,9 @@ import { CtaButtonService } from './cta-button.service';
     <ng-container
       *ngComponentOutlet="
         ctaButtonComponent();
-        inputs: { courseDetails: courseDetails() }
+        inputs: {
+          courseDetails: courseDetails()
+        }
       "
     />
   `,

@@ -14,5 +14,8 @@ export class StartLearningComponent {
     console.log(
       `Navigating to learning page for ${this.courseDetails().title}`
     );
+    window.alert(
+      `Navigating to learning page for ${this.courseDetails().title}`
+    );
   }
 }
