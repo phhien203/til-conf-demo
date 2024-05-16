@@ -1,11 +1,14 @@
 import { Component, input } from '@angular/core';
 import { Course } from '../../model/course.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   selector: 'app-register',
-  template: `<button (click)="goToRegisterForm()">Register</button>`,
+  template: `<button (click)="goToRegisterForm()">
+    Register for {{ courseDetails().price | currency }}
+  </button>`,
 })
 export class RegisterComponent {
   courseDetails = input.required<Course>();
